@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="static/js/jquery-3.2.1.min.js"></script>
+	<script>
+		$(function(){
+			$("#login").click(function(){
+				var username = $("#username").val();
+				var password = $("#password").val();
+				$.post("/webnote/user/login",{username:username,password:password},function(data){
+					if(data.errcode == 0){
+						window.location.href = "index/index.html";
+					}else{
+						alert(data.errmsg);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<div>
+			<label>用户账号</label>
+			<input type="text" id="username" class="enterBox" />
+		</div>
+		<div>
+			<label>密码</label>
+			<input type="password" id="password" class="enterBox" />
+		</div>
+		<div>
+			<button id="login">登录</button>
+		</div>
+	</div>
+</body>
+</html>
